@@ -8,6 +8,7 @@ class AppState {
     this.searchQuery = '';
     this.filteredVerses = [...DHAMMAPADA_VERSES];
     this.expandedChapterId = 1;
+    this.contestTarget = localStorage.getItem('phapcu_contest_target') || 'muc3';
 
     // Deep linking support (?ke=123 hoặc ?v=123)
     const urlParams = new URLSearchParams(window.location.search);
@@ -92,23 +93,40 @@ class AppState {
     this.saveProgress();
   }
 
+  getTargetRange() {
+    switch (this.contestTarget) {
+      case 'muc1': return [1, 142]; // Mức 1: 142 câu đầu
+      case 'muc2': return [1, 284]; // Mức 2: 284 câu
+      case 'tiep2': return [143, 284]; // Thi lại: 142 câu tiếp
+      case 'tiep3': return [143, 423]; // Thi lại: 281 câu tiếp
+      case 'muc3':
+      default:
+        return [1, 423]; // Mức 3: Toàn bộ 423 câu
+    }
+  }
+
   getStats() {
+    const range = this.getTargetRange();
     let mastered = 0;
     let learning = 0;
     let unseen = 0;
-    Object.values(this.progress).forEach(p => {
-      if (p.status === 'mastered') mastered++;
-      else if (p.status === 'learning') learning++;
+    for (let id = range[0]; id <= range[1]; id++) {
+      const p = this.progress[id];
+      if (p?.status === 'mastered') mastered++;
+      else if (p?.status === 'learning') learning++;
       else unseen++;
-    });
-    return { mastered, learning, unseen, total: DHAMMAPADA_VERSES.length };
+    }
+    const total = range[1] - range[0] + 1;
+    return { mastered, learning, unseen, total };
   }
 
   getVersesForDay(day) {
-    const perDay = Math.ceil(DHAMMAPADA_VERSES.length / 30);
-    const startId = (day - 1) * perDay + 1;
-    const endId = Math.min(DHAMMAPADA_VERSES.length, day * perDay);
-    return DHAMMAPADA_VERSES.filter(v => v.id >= startId && v.id <= endId);
+    const range = this.getTargetRange();
+    const targetVerses = DHAMMAPADA_VERSES.filter(v => v.id >= range[0] && v.id <= range[1]);
+    const perDay = Math.ceil(targetVerses.length / 30);
+    const startIdx = (day - 1) * perDay;
+    const endIdx = Math.min(targetVerses.length, day * perDay);
+    return targetVerses.slice(startIdx, endIdx);
   }
 }
 
@@ -199,6 +217,8 @@ function toClozeTest(lines) {
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
   initBackground();
+  const targetSelect = document.getElementById('contestTargetSelect');
+  if (targetSelect) targetSelect.value = state.contestTarget;
   renderSidebarChapters();
   renderDaysPlanSelector();
   applyFilters();
@@ -887,6 +907,30 @@ function setupEventListeners() {
   document.getElementById('btnFontInc')?.addEventListener('click', () => changeFontSize(0.15));
   document.getElementById('btnShareVerse')?.addEventListener('click', shareCurrentVerse);
 
+  // Contest Level Target Listener (Thắp Sáng Đèn Tuệ)
+  const targetSelect = document.getElementById('contestTargetSelect');
+  if (targetSelect) {
+    targetSelect.value = state.contestTarget;
+    targetSelect.addEventListener('change', (e) => {
+      state.contestTarget = e.target.value;
+      try {
+        localStorage.setItem('phapcu_contest_target', state.contestTarget);
+      } catch (err) {}
+
+      const range = state.getTargetRange();
+      const currentVerse = state.filteredVerses[state.currentVerseIndex];
+      if (!currentVerse || currentVerse.id < range[0] || currentVerse.id > range[1]) {
+        selectSpecificVerse(range[0]);
+      } else {
+        renderCurrentVerse();
+      }
+
+      renderDaysPlanSelector();
+      updateProgressStats();
+      showToast(`Đã chọn mục tiêu: ${targetSelect.options[targetSelect.selectedIndex].text}`);
+    });
+  }
+
   document.getElementById('btnExportData')?.addEventListener('click', exportUserData);
   document.getElementById('btnImportData')?.addEventListener('click', () => document.getElementById('importFileInput').click());
   document.getElementById('importFileInput')?.addEventListener('change', importUserData);
@@ -951,8 +995,8 @@ function setupEventListeners() {
   });
 }
 
-// Background & Frosted Glass Controller
-const DEFAULT_BG = 'https://upload.wikimedia.org/wikipedia/commons/1/1d/Borobudur_Sunrise_2012-01-05.jpg';
+// Background & Frosted Glass Controller (Default: Đêm Hội Hoa Đăng Chùa Hoằng Pháp)
+const DEFAULT_BG = 'chua-hoang-phap.jpg';
 
 function updateGlassOpacityStyles(pct) {
   // pct is 10 to 90 (default 35%)
@@ -1198,8 +1242,10 @@ function playTextToSpeech() {
 }
 
 function startMockExam() {
-  const count = 10;
-  const shuffled = [...DHAMMAPADA_VERSES].sort(() => 0.5 - Math.random());
+  const range = state.getTargetRange();
+  const pool = DHAMMAPADA_VERSES.filter(v => v.id >= range[0] && v.id <= range[1]);
+  const count = Math.min(10, pool.length);
+  const shuffled = [...pool].sort(() => 0.5 - Math.random());
   state.examVerses = shuffled.slice(0, count);
   state.examCurrentIndex = 0;
   state.examResults = [];

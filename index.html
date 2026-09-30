@@ -73,7 +73,7 @@
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: #1c1917;
-      background-image: url('https://images.unsplash.com/photo-1528164344705-475426879c0d?q=80&w=2000&auto=format&fit=crop');
+      background-image: url('chua-hoang-phap.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -282,10 +282,27 @@
     <!-- Sidebar: 26 Chapters & Stats -->
     <aside id="sidebar" class="w-80 glass-sidebar flex-shrink-0 flex flex-col hidden md:flex transition-all">
       
+      <!-- Contest Level Selector (Thắp Sáng Đèn Tuệ) -->
+      <div class="px-2.5 py-1.5 border-b border-white/30 bg-amber-50/60 backdrop-blur-sm">
+        <label for="contestTargetSelect" class="text-[10px] font-bold text-amber-950 uppercase tracking-wider flex items-center mb-1">
+          <svg class="w-3.5 h-3.5 text-amber-700 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          Mục tiêu thi (Đèn Tuệ VIII):
+        </label>
+        <select id="contestTargetSelect" class="w-full py-1 px-2 text-xs font-semibold rounded-lg border border-amber-300/80 bg-white/90 text-amber-950 focus:outline-none focus:ring-1 focus:ring-amber-600 shadow-xs">
+          <option value="muc1">Mức 1: 142 câu đầu (Kệ 1 - 142)</option>
+          <option value="muc2">Mức 2: 284 câu (Kệ 1 - 284)</option>
+          <option value="muc3" selected>Mức 3: Toàn bộ 423 câu</option>
+          <option value="tiep2">Thi lại: 142 câu tiếp (Kệ 143 - 284)</option>
+          <option value="tiep3">Thi lại: 281 câu tiếp (Kệ 143 - 423)</option>
+        </select>
+      </div>
+
       <!-- Progress Bar & 3 Compact Stat Cards -->
       <div class="p-2.5 border-b border-white/30 bg-white/25 backdrop-blur-sm">
         <div class="flex justify-between items-center mb-1">
-          <span class="text-[11px] font-semibold text-stone-700 uppercase tracking-wider">Tiến độ thuộc lòng</span>
+          <span class="text-[11px] font-semibold text-stone-700 uppercase tracking-wider">Tiến độ mục tiêu</span>
           <span id="progressPercent" class="text-xs font-mono font-bold text-amber-900">0%</span>
         </div>
         <div class="w-full bg-white/60 h-1.5 rounded-full overflow-hidden border border-white/60">
@@ -678,6 +695,13 @@
         <div class="space-y-2">
           <div class="font-semibold text-stone-700 text-xs">Hoặc chọn nhanh ảnh Phật Pháp & Thiền Môn sắc nét:</div>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            <button class="preset-bg-btn p-2 rounded-lg border-2 border-amber-600 bg-amber-50/80 hover:bg-amber-100 text-left transition shadow-xs flex flex-col justify-between col-span-2 sm:col-span-3" data-url="chua-hoang-phap.jpg">
+              <div class="text-[12px] font-bold text-amber-950 flex items-center justify-between">
+                <span>Đêm Hoa Đăng Chùa Hoằng Pháp (Thắp Sáng Đèn Tuệ)</span>
+                <span class="text-[9px] px-1.5 py-0.5 rounded bg-amber-200 text-amber-950 font-bold uppercase">Chính thức</span>
+              </div>
+              <div class="text-[10px] text-stone-600 mt-0.5">Ảnh thực tế Lễ Thắp Sáng Đèn Tuệ tại Tổ đình Hoằng Pháp lung linh trang nghiêm</div>
+            </button>
             <button class="preset-bg-btn p-2 rounded-lg border border-stone-300 bg-stone-50 hover:bg-amber-50 hover:border-amber-500 text-left transition shadow-xs flex flex-col justify-between" data-url="https://upload.wikimedia.org/wikipedia/commons/1/16/Tran_quoc_pagoda.jpg">
               <div class="text-[11px] font-bold text-amber-950">Chùa Trấn Quốc</div>
               <div class="text-[9px] text-stone-500">Hà Nội • Cổ tự linh thiêng</div>
