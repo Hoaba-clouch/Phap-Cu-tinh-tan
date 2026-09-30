@@ -218,6 +218,11 @@
     ::-webkit-scrollbar-thumb:hover {
       background: rgba(217, 119, 6, 0.7);
     }
+
+    /* Đảm bảo chiều cao dòng để không bị cắt mất dấu hỏi/ngã/mũ ở chữ hoa tiếng Việt (như Ẩ trong PHẨM) */
+    .chapter-card, #currentChapterTitle, .chapter-header, select, option {
+      line-height: 1.5 !important;
+    }
   </style>
 </head>
 <body class="h-full text-stone-800 flex flex-col antialiased overflow-x-hidden">
@@ -245,12 +250,6 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
           </svg>
           <span class="hidden sm:inline">Bí Kíp Nhớ Nhanh</span>
-        </button>
-        <button id="btnPlayBell" title="Thỉnh chuông thanh tịnh" class="p-2 rounded-full hover:bg-white/95 transition flex items-center space-x-1 text-sm bg-white/70 text-amber-900 border border-white/60 shadow-xs backdrop-blur-sm">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-          </svg>
-          <span class="hidden sm:inline text-xs font-semibold">Thỉnh Chuông</span>
         </button>
         <button id="btnOpenBgModal" title="Đổi hình nền từ máy & chỉnh độ mờ kính" class="p-2 sm:px-2.5 sm:py-1.5 rounded-lg bg-white/70 hover:bg-white/95 text-stone-800 border border-white/60 text-xs font-semibold flex items-center space-x-1.5 transition shadow-xs backdrop-blur-sm">
           <svg class="w-4 h-4 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -288,7 +287,7 @@
           <svg class="w-3.5 h-3.5 text-amber-700 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
           </svg>
-          Mục tiêu thi (Đèn Tuệ VIII):
+          Mục tiêu (Thắp Sáng Đèn Tuệ):
         </label>
         <select id="contestTargetSelect" class="w-full py-1 px-2 text-xs font-semibold rounded-lg border border-amber-300/80 bg-white/90 text-amber-950 focus:outline-none focus:ring-1 focus:ring-amber-600 shadow-xs">
           <option value="muc1">Mức 1: 142 câu đầu (Kệ 1 - 142)</option>
@@ -428,7 +427,7 @@
           <!-- Header Info of Active Verse -->
           <div class="flex items-center justify-between border-b border-stone-200/80 pb-2.5 sm:pb-3 gap-2">
             <div class="min-w-0">
-              <div id="currentChapterTitle" class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-800 truncate">I. PHẨM SONG YẾU</div>
+              <div id="currentChapterTitle" class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-800 pt-1 pb-0.5 truncate">I. PHẨM SONG YẾU</div>
               <h2 id="currentVerseNumber" class="text-lg sm:text-xl md:text-2xl font-serif font-bold text-stone-900">Bài Kệ Số 1</h2>
             </div>
             <div class="flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0">

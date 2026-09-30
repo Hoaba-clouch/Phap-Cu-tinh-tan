@@ -130,51 +130,11 @@ class AppState {
   }
 }
 
-// Sound Synthesizer: Zen Tibetan Bell Chime using Web Audio API
+// Silent Audio Controller (No sound)
 class ZenAudio {
-  constructor() {
-    this.audioCtx = null;
-  }
-
-  init() {
-    if (!this.audioCtx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      this.audioCtx = new AudioContext();
-    }
-    if (this.audioCtx.state === 'suspended') {
-      this.audioCtx.resume();
-    }
-  }
-
-  playBell() {
-    try {
-      this.init();
-      const ctx = this.audioCtx;
-      const now = ctx.currentTime;
-
-      const freqs = [432, 864, 1296, 1728];
-      const gains = [0.6, 0.25, 0.1, 0.05];
-
-      freqs.forEach((freq, idx) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now);
-
-        gain.gain.setValueAtTime(gains[idx], now);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 3.2 + idx * 0.5);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.start(now);
-        osc.stop(now + 4.2);
-      });
-    } catch (e) {
-      console.warn("Audio bell could not play", e);
-    }
-  }
+  init() {}
+  playBell() {}
+  playMo() {}
 }
 
 // UI Controller
@@ -290,9 +250,9 @@ function renderSidebarChapters() {
     return `
       <div class="chapter-card rounded-xl border transition-all overflow-hidden mb-1.5 ${isExpanded ? 'border-amber-400/90 bg-white/75 shadow-md backdrop-blur-md' : 'border-white/40 bg-white/40 hover:bg-white/60 backdrop-blur-sm'}">
         <div class="chapter-header p-2.5 flex items-center justify-between cursor-pointer select-none" data-chapter-id="${ch.id}">
-          <div class="truncate pr-2 flex-1">
-            <div class="text-xs font-semibold ${isExpanded ? 'text-amber-950' : 'text-stone-800'}">${ch.name}</div>
-            <div class="text-[11px] text-stone-600">Kệ ${ch.range[0]} - ${ch.range[1]} (${countInChapter} câu)</div>
+          <div class="pr-2 flex-1 min-w-0">
+            <div class="text-xs font-semibold pt-0.5 pb-0.5 leading-normal ${isExpanded ? 'text-amber-950' : 'text-stone-800'} truncate">${ch.name}</div>
+            <div class="text-[11px] text-stone-600 leading-normal">Kệ ${ch.range[0]} - ${ch.range[1]} (${countInChapter} câu)</div>
           </div>
           <div class="flex items-center space-x-1.5 flex-shrink-0">
             <span class="text-[11px] px-1.5 py-0.5 rounded font-mono ${isCompleted ? 'bg-emerald-100/90 text-emerald-900 border border-emerald-300' : 'bg-white/60 text-stone-700 border border-white/60'}">${percent}%</span>
@@ -773,9 +733,6 @@ window.addEventListener('keydown', (e) => {
     switchMode('cloze');
   } else if (e.key === '4') {
     switchMode('blind');
-  } else if (e.key === ' ') {
-    e.preventDefault();
-    zenAudio.playBell();
   }
 });
 
@@ -821,7 +778,6 @@ function setupEventListeners() {
     const cur = state.filteredVerses[state.currentVerseIndex];
     if (cur) {
       state.updateVerseStatus(cur.id, 'mastered');
-      zenAudio.playBell();
       updateProgressStats();
       renderCurrentVerse();
       renderVerseIndexChips();
@@ -958,6 +914,31 @@ function setupEventListeners() {
   });
   document.getElementById('btnSaveBgModal')?.addEventListener('click', () => {
     document.getElementById('bgModal')?.classList.add('hidden');
+  });
+
+  // Đóng modal khi nhấn vào vùng trống (backdrop) bên ngoài hoặc phím Escape
+  ['examModal', 'tipsModal', 'bgModal'].forEach(modalId => {
+    const modalEl = document.getElementById(modalId);
+    if (modalEl) {
+      modalEl.addEventListener('click', (e) => {
+        if (e.target === modalEl) {
+          modalEl.classList.add('hidden');
+          if (modalId === 'examModal') closeMockExam();
+        }
+      });
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      ['examModal', 'tipsModal', 'bgModal'].forEach(modalId => {
+        const modalEl = document.getElementById(modalId);
+        if (modalEl && !modalEl.classList.contains('hidden')) {
+          modalEl.classList.add('hidden');
+          if (modalId === 'examModal') closeMockExam();
+        }
+      });
+    }
   });
 
   const btnTriggerBg = document.getElementById('btnTriggerBgUpload');
@@ -1272,7 +1253,6 @@ function renderExamQuestion() {
         <button onclick="closeMockExam()" class="px-5 py-2 border border-stone-300 hover:bg-stone-100 text-stone-700 rounded-lg text-xs font-semibold">Đóng</button>
       </div>
     `;
-    zenAudio.playBell();
     return;
   }
 
