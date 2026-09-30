@@ -19,7 +19,13 @@ class AppState {
         this.expandedChapterId = targetVerse.chapterId;
       }
     } else {
-      this.currentVerseIndex = 0;
+      const savedVerseId = parseInt(localStorage.getItem('phapcu_last_verse_id') || '1', 10);
+      const validVerseId = (!isNaN(savedVerseId) && savedVerseId >= 1 && savedVerseId <= 423) ? savedVerseId : 1;
+      this.currentVerseIndex = validVerseId - 1;
+      const targetVerse = DHAMMAPADA_VERSES.find(v => v.id === validVerseId);
+      if (targetVerse) {
+        this.expandedChapterId = targetVerse.chapterId;
+      }
     }
     
     this.progress = this.loadProgress();
@@ -452,8 +458,9 @@ function renderCurrentVerse() {
     return;
   }
 
-  // Đồng bộ số câu lên URL để chia sẻ liên kết trực tiếp (?ke=123)
+  // Đồng bộ số câu lên URL và lưu lại để mở lại đúng câu này khi tắt web
   try {
+    localStorage.setItem('phapcu_last_verse_id', currentVerse.id);
     const newUrl = `${window.location.pathname}?ke=${currentVerse.id}`;
     if (window.location.search !== `?ke=${currentVerse.id}`) {
       window.history.replaceState({ verseId: currentVerse.id }, '', newUrl);
@@ -631,6 +638,7 @@ function updateProgressStats() {
 let currentFontSizeMultiplier = parseFloat(localStorage.getItem('phapcu_font_scale') || '1.0');
 
 function applyFontSizeMultiplier() {
+  document.documentElement.style.setProperty('--verse-font-scale', currentFontSizeMultiplier);
   const container = document.getElementById('verseContentArea');
   if (container) {
     container.style.fontSize = `${currentFontSizeMultiplier * 100}%`;
@@ -638,12 +646,12 @@ function applyFontSizeMultiplier() {
 }
 
 function changeFontSize(delta) {
-  currentFontSizeMultiplier = Math.min(1.5, Math.max(0.85, currentFontSizeMultiplier + delta));
+  currentFontSizeMultiplier = Math.min(1.8, Math.max(0.7, parseFloat((currentFontSizeMultiplier + delta).toFixed(2))));
   try {
     localStorage.setItem('phapcu_font_scale', currentFontSizeMultiplier.toFixed(2));
   } catch (e) {}
   applyFontSizeMultiplier();
-  showToast(`Cỡ chữ: ${Math.round(currentFontSizeMultiplier * 100)}%`);
+  showToast(`Cỡ chữ bài kệ: ${Math.round(currentFontSizeMultiplier * 100)}%`);
 }
 
 // Share current verse (Web Share API & Clipboard Fallback)
@@ -873,6 +881,11 @@ function setupEventListeners() {
   if (btnPlayBell) {
     btnPlayBell.addEventListener('click', () => zenAudio.playBell());
   }
+
+  // Font size adjusters & Share
+  document.getElementById('btnFontDec')?.addEventListener('click', () => changeFontSize(-0.15));
+  document.getElementById('btnFontInc')?.addEventListener('click', () => changeFontSize(0.15));
+  document.getElementById('btnShareVerse')?.addEventListener('click', shareCurrentVerse);
 
   document.getElementById('btnExportData')?.addEventListener('click', exportUserData);
   document.getElementById('btnImportData')?.addEventListener('click', () => document.getElementById('importFileInput').click());
