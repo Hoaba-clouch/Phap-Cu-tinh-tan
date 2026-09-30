@@ -995,8 +995,8 @@ function setupEventListeners() {
   });
 }
 
-// Background & Frosted Glass Controller (Default: Đêm Hội Hoa Đăng Chùa Hoằng Pháp)
-const DEFAULT_BG = 'chua-hoang-phap.jpg';
+// Background & Frosted Glass Controller
+const DEFAULT_BG = 'https://images.unsplash.com/photo-1528164344705-475426879c0d?q=80&w=2000&auto=format&fit=crop';
 
 function updateGlassOpacityStyles(pct) {
   // pct is 10 to 90 (default 35%)
