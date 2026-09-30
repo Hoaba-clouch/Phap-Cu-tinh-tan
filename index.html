@@ -268,41 +268,41 @@
     <!-- Sidebar: 26 Chapters & Stats -->
     <aside id="sidebar" class="w-80 glass-sidebar flex-shrink-0 flex flex-col hidden md:flex transition-all">
       
-      <!-- Progress Bar Card -->
-      <div class="p-4 border-b border-white/30 bg-white/30 backdrop-blur-sm">
-        <div class="flex justify-between items-center mb-1.5">
-          <span class="text-[11px] font-semibold text-stone-700 uppercase tracking-wider">Tiến Độ Thuộc Lòng</span>
+      <!-- Progress Bar & 3 Compact Stat Cards -->
+      <div class="p-2.5 border-b border-white/30 bg-white/25 backdrop-blur-sm">
+        <div class="flex justify-between items-center mb-1">
+          <span class="text-[11px] font-semibold text-stone-700 uppercase tracking-wider">Tiến độ thuộc lòng</span>
           <span id="progressPercent" class="text-xs font-mono font-bold text-amber-900">0%</span>
         </div>
-        <div class="w-full bg-white/60 h-2 rounded-full overflow-hidden border border-white/60">
+        <div class="w-full bg-white/60 h-1.5 rounded-full overflow-hidden border border-white/60">
           <div id="progressBarFill" class="bg-emerald-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
         </div>
 
-        <div class="grid grid-cols-3 gap-2 mt-3 text-center">
-          <div class="p-2 rounded-lg bg-emerald-50/80 border border-emerald-300/80 shadow-xs">
-            <div id="statMastered" class="text-base font-bold text-emerald-900 font-mono">0</div>
+        <div class="grid grid-cols-3 gap-1.5 mt-2 text-center">
+          <div class="py-1 px-1 rounded-lg bg-emerald-50/80 border border-emerald-300/70 shadow-xs">
+            <div id="statMastered" class="text-sm font-bold text-emerald-900 font-mono leading-tight">0</div>
             <div class="text-[10px] text-emerald-800 font-medium">Đã thuộc</div>
           </div>
-          <div class="p-2 rounded-lg bg-amber-50/80 border border-amber-300/80 shadow-xs">
-            <div id="statLearning" class="text-base font-bold text-amber-900 font-mono">0</div>
+          <div class="py-1 px-1 rounded-lg bg-amber-50/80 border border-amber-300/70 shadow-xs">
+            <div id="statLearning" class="text-sm font-bold text-amber-900 font-mono leading-tight">0</div>
             <div class="text-[10px] text-amber-800 font-medium">Đang học</div>
           </div>
-          <div class="p-2 rounded-lg bg-white/60 border border-white/70 shadow-xs">
-            <div id="statUnseen" class="text-base font-bold text-stone-700 font-mono">423</div>
+          <div class="py-1 px-1 rounded-lg bg-white/60 border border-white/70 shadow-xs">
+            <div id="statUnseen" class="text-sm font-bold text-stone-700 font-mono leading-tight">423</div>
             <div class="text-[10px] text-stone-600 font-medium">Chưa học</div>
           </div>
         </div>
       </div>
 
-      <!-- 30-Day Plan Selector -->
-      <div class="p-3 border-b border-white/30 bg-white/20 backdrop-blur-sm">
-        <label for="dayPlanSelect" class="flex items-center text-xs font-semibold text-amber-950 mb-1.5">
-          <svg class="w-3.5 h-3.5 text-amber-700 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <!-- Compact 30-Day Plan Selector -->
+      <div class="px-3 py-1.5 border-b border-white/30 bg-white/15 flex items-center justify-between gap-2">
+        <label for="dayPlanSelect" class="text-[11px] font-semibold text-amber-950 whitespace-nowrap flex items-center flex-shrink-0">
+          <svg class="w-3.5 h-3.5 text-amber-800 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
           </svg>
-          Lộ Trình 30 Ngày Tinh Tấn:
+          Lộ trình:
         </label>
-        <select id="dayPlanSelect" class="w-full p-2 text-xs rounded-lg border border-white/60 bg-white/80 text-stone-800 font-medium focus:outline-none focus:ring-1 focus:ring-amber-500 shadow-xs">
+        <select id="dayPlanSelect" class="flex-1 py-1 px-2 text-[11px] rounded-md border border-white/60 bg-white/80 text-stone-800 font-medium focus:outline-none focus:ring-1 focus:ring-amber-500 shadow-xs">
           <!-- Populated by JS -->
         </select>
       </div>
@@ -336,9 +336,32 @@
       </div>
 
       <!-- Credits & Copyright -->
-      <div class="px-3 py-2 border-t border-white/20 bg-white/20 text-[10px] text-stone-600 text-center leading-normal">
-        <div>Kinh Pháp Cú • Chùa Hoằng Pháp</div>
-        <div class="font-medium text-amber-950 mt-0.5">Ứng dụng phát triển bởi Hoaba-cloud • © 2026</div>
+      <div class="px-3 py-1.5 border-t border-white/20 bg-white/20 text-center text-[10px] text-stone-800 leading-tight">
+        <div class="text-stone-800 font-medium">Kinh Pháp Cú • Chùa Hoằng Pháp</div>
+        <div class="font-bold text-amber-950 mt-0.5">Tác giả: Hoaba-cloud • © 2026</div>
+        <div class="mt-1 flex items-center justify-center space-x-2 text-[10px]">
+          <a href="https://github.com/Hoaba-clouch" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-0.5 text-stone-800 hover:text-black font-semibold transition">
+            <svg class="w-3 h-3 fill-current text-stone-800" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+            <span>GitHub</span>
+          </a>
+          <span class="text-stone-400">•</span>
+          <a href="mailto:bahoa12346@gmail.com" class="inline-flex items-center space-x-0.5 text-stone-800 hover:text-black font-semibold transition">
+            <svg class="w-3 h-3 text-stone-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <span>Email</span>
+          </a>
+          <span class="text-stone-400">•</span>
+          <a href="https://www.facebook.com/heo.among" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-0.5 text-stone-800 hover:text-black font-semibold transition">
+            <svg class="w-3 h-3 fill-current text-stone-800" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            <span>Facebook</span>
+          </a>
+        </div>
       </div>
     </aside>
 
@@ -514,9 +537,31 @@
           </div>
 
           <!-- Subtle footer inside main card -->
-          <div class="pt-2 text-center text-[10px] text-stone-600/80 flex items-center justify-center space-x-2">
-            <span>Ứng dụng phát triển bởi Hoaba-cloud • © 2026</span>
-            <span>•</span>
+          <div class="pt-2 text-center text-[10px] text-stone-800 flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5">
+            <span class="font-medium text-stone-800">Tác giả: Hoaba-cloud • © 2026</span>
+            <span class="text-stone-400">•</span>
+            <a href="https://github.com/Hoaba-clouch" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-0.5 text-stone-800 hover:text-black font-semibold transition">
+              <svg class="w-3 h-3 fill-current text-stone-800" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+            <span class="text-stone-400">•</span>
+            <a href="mailto:bahoa12346@gmail.com" class="inline-flex items-center space-x-0.5 text-stone-800 hover:text-black font-semibold transition">
+              <svg class="w-3 h-3 text-stone-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <span>Email</span>
+            </a>
+            <span class="text-stone-400">•</span>
+            <a href="https://www.facebook.com/heo.among" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-0.5 text-stone-800 hover:text-black font-semibold transition">
+              <svg class="w-3 h-3 fill-current text-stone-800" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+              <span>Facebook</span>
+            </a>
+            <span class="text-stone-400">•</span>
             <span>Phụng sự Phật pháp phi thương mại</span>
           </div>
 

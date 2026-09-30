@@ -228,17 +228,19 @@ function renderSidebarChapters() {
         const verseObj = DHAMMAPADA_VERSES.find(v => v.id === vid);
         const snippet = verseObj ? verseObj.lines[0] : '';
 
-        let badgeStyle = 'bg-white/70 text-stone-800 border-white/60 hover:bg-white/95';
-        if (vStatus === 'mastered') {
-          badgeStyle = 'bg-emerald-100/90 text-emerald-950 border-emerald-300 font-semibold hover:bg-emerald-200';
+        let pillStyle = '';
+        if (isCurrent) {
+          pillStyle = 'bg-amber-700 text-white font-bold border-amber-700 ring-2 ring-amber-600 shadow-sm';
+        } else if (vStatus === 'mastered') {
+          pillStyle = 'bg-emerald-100/90 text-emerald-950 border-emerald-300 font-semibold hover:bg-emerald-200';
         } else if (vStatus === 'learning') {
-          badgeStyle = 'bg-amber-100/90 text-amber-950 border-amber-300 font-semibold hover:bg-amber-200';
+          pillStyle = 'bg-amber-100/90 text-amber-950 border-amber-300 font-semibold hover:bg-amber-200';
+        } else {
+          pillStyle = 'bg-white/70 text-stone-800 border-white/60 hover:bg-white/95';
         }
 
-        const activeClass = isCurrent ? 'ring-2 ring-amber-600 bg-amber-700 text-white font-bold border-amber-700 shadow-sm' : '';
-
         pills.push(`
-          <button class="verse-dropdown-pill h-7 rounded text-[11px] font-mono transition-all flex items-center justify-center border ${badgeStyle} ${activeClass}" data-verse-id="${vid}" title="Kệ ${vid}: ${snippet}">
+          <button class="verse-dropdown-pill h-7 rounded text-[11px] font-mono transition-all flex items-center justify-center border ${pillStyle}" data-verse-id="${vid}" title="Kệ ${vid}: ${snippet}">
             ${vid}
           </button>
         `);
@@ -394,17 +396,40 @@ function renderVerseIndexChips() {
   if (!container) return;
   container.innerHTML = state.filteredVerses.map((v, idx) => {
     const status = state.progress[v.id]?.status || 'unseen';
-    let statusClass = 'bg-white/90 text-stone-900 border border-stone-300 font-semibold hover:bg-white shadow-xs';
-    if (status === 'mastered') statusClass = 'bg-emerald-600 text-white border border-emerald-700 font-bold shadow-xs';
-    else if (status === 'learning') statusClass = 'bg-amber-500 text-white border border-amber-600 font-bold shadow-xs';
-
     const isActive = idx === state.currentVerseIndex;
+
+    let chipClass = 'w-8 h-8 min-w-[2rem] flex-shrink-0 rounded-md text-xs font-mono transition-all flex items-center justify-center ';
+    
+    if (isActive) {
+      if (status === 'mastered') {
+        chipClass += 'bg-emerald-600 text-white font-bold border border-emerald-600 ring-2 ring-emerald-500 ring-offset-1 shadow-md scale-105 z-10';
+      } else if (status === 'learning') {
+        chipClass += 'bg-amber-600 text-white font-bold border border-amber-600 ring-2 ring-amber-500 ring-offset-1 shadow-md scale-105 z-10';
+      } else {
+        chipClass += 'bg-amber-800 text-white font-bold border border-amber-800 ring-2 ring-amber-600 ring-offset-1 shadow-md scale-105 z-10';
+      }
+    } else {
+      if (status === 'mastered') {
+        chipClass += 'bg-emerald-600 text-white border border-emerald-700 font-bold shadow-xs hover:opacity-90';
+      } else if (status === 'learning') {
+        chipClass += 'bg-amber-500 text-white border border-amber-600 font-bold shadow-xs hover:opacity-90';
+      } else {
+        chipClass += 'bg-white/90 text-stone-900 border border-stone-300 font-semibold hover:bg-white hover:border-amber-500 shadow-xs';
+      }
+    }
+
     return `
-      <button class="w-8 h-8 min-w-[2rem] flex-shrink-0 rounded-md text-xs font-mono transition-all flex items-center justify-center ${statusClass} ${isActive ? 'ring-2 ring-amber-600 ring-offset-1 bg-amber-700 text-white font-bold border-amber-700 shadow-md scale-105 z-10' : 'hover:border-amber-500'}" data-verse-idx="${idx}" title="Kệ ${v.id}">
+      <button class="${chipClass}" data-verse-idx="${idx}" title="Kệ ${v.id}">
         ${v.id}
       </button>
     `;
   }).join('');
+
+  // Cuộn ô đang chọn vào giữa tầm nhìn
+  const activeBtn = container.querySelector(`[data-verse-idx="${state.currentVerseIndex}"]`);
+  if (activeBtn) {
+    activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
 
   container.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
