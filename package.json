@@ -1,0 +1,16 @@
+{
+  "name": "phap-cu-tinh-tan",
+  "version": "1.0.0",
+  "description": "Ứng dụng học thuộc lòng 423 bài kệ Kinh Pháp Cú - Giao diện Thiền Môn Kính Mờ",
+  "scripts": {
+    "start": "serve ."
+  },
+  "keywords": [
+    "dhammapada",
+    "phap-cu",
+    "buddhism",
+    "hoang-phap"
+  ],
+  "author": "Hoaba-cloud <bahoa12346@gmail.com>",
+  "license": "MIT"
+}

@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pháp Cú Tinh Tấn - 423 Bài Kệ Chùa Hoằng Pháp</title>
+  <meta name="description" content="Ứng dụng học thuộc lòng 423 bài kệ Kinh Pháp Cú (Chùa Hoằng Pháp) - Phương pháp lặp lại ngắt quãng, phân tích cấu trúc thiền môn, thỉnh chuông thiền và nghe đọc mẫu.">
+  <meta name="author" content="Hoaba-cloud (bahoa12346@gmail.com)">
+  <meta name="theme-color" content="#78350f">
+  
+  <!-- Open Graph / Facebook / Zalo Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://phap-cu-tinh-tan.vercel.app">
+  <meta property="og:title" content="Pháp Cú Tinh Tấn - 423 Bài Kệ Học Thuộc Lòng">
+  <meta property="og:description" content="Nền tảng học thuộc lòng 423 bài kệ Kinh Pháp Cú (Chùa Hoằng Pháp) với phương pháp ghi nhớ hiện đại, âm thanh chuông thiền và giao diện tĩnh lặng.">
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/1/1d/Borobudur_Sunrise_2012-01-05.jpg">
+
+  <!-- Twitter Preview -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pháp Cú Tinh Tấn - 423 Bài Kệ Học Thuộc Lòng">
+  <meta name="twitter:description" content="Nền tảng học thuộc lòng 423 bài kệ Kinh Pháp Cú (Chùa Hoằng Pháp) với phương pháp ghi nhớ hiện đại, âm thanh chuông thiền và giao diện tĩnh lặng.">
+  <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/1/1d/Borobudur_Sunrise_2012-01-05.jpg">
+
+  <!-- Favicon: Monochromatic Lotus SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2378350f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21c-4.5 0-9-4-9-10 4 0 7 2 9 6 2-4 5-6 9-6 0 6-4.5 10-9 10z'/%3E%3Cpath d='M12 21V9c0-3 1.5-6 4-7-2 1-3.5 3-4 6-.5-3-2-5-4-6 2.5 1 4 4 4 7'/%3E%3C/svg%3E">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Cormorant Garamond (Poetic Serif for verses) & Inter (UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            amber: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f',
+              950: '#451a03',
+            }
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --glass-alpha: 0.35;
+      --card-alpha: 0.68;
+      --glass-blur: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #1c1917;
+      background-image: url('https://images.unsplash.com/photo-1528164344705-475426879c0d?q=80&w=2000&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: #1c1917;
+    }
+
+    /* Poetic, meditative typography for Buddhist verses */
+    .verse-font {
+      font-family: 'Cormorant Garamond', 'Lora', serif;
+      font-size: 1.35rem;
+      line-height: 1.95;
+      letter-spacing: 0.015em;
+      font-weight: 600;
+      color: #1c1917;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95);
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+    @media (min-width: 640px) {
+      .verse-font {
+        font-size: 1.65rem;
+        line-height: 2.2;
+      }
+    }
+    @media (min-width: 768px) {
+      .verse-font {
+        font-size: 1.85rem;
+        line-height: 2.3;
+      }
+    }
+
+    /* True Luminous Frosted Glass (Kính Mờ Trong Suốt) */
+    .glass-header {
+      background: rgba(255, 255, 255, var(--glass-alpha, 0.35));
+      backdrop-filter: blur(var(--glass-blur, 16px)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--glass-blur, 16px)) saturate(160%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .glass-sidebar {
+      background: rgba(255, 255, 255, calc(var(--glass-alpha, 0.35) * 0.9));
+      backdrop-filter: blur(var(--glass-blur, 16px)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--glass-blur, 16px)) saturate(160%);
+      border-right: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 4px 0 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .glass-main {
+      background: transparent; /* Hoàn toàn trong suốt để hình nền lộ rõ 100% */
+    }
+
+    .glass-toolbar {
+      background: rgba(255, 255, 255, calc(var(--glass-alpha, 0.35) * 0.85));
+      backdrop-filter: blur(14px) saturate(150%);
+      -webkit-backdrop-filter: blur(14px) saturate(150%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .glass-chips-bar {
+      background: rgba(255, 255, 255, calc(var(--glass-alpha, 0.35) * 0.75));
+      backdrop-filter: blur(14px) saturate(150%);
+      -webkit-backdrop-filter: blur(14px) saturate(150%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, var(--glass-alpha, 0.45));
+      backdrop-filter: blur(var(--glass-blur, 16px)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--glass-blur, 16px)) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .glass-verse-box {
+      background: rgba(255, 255, 255, var(--card-alpha, 0.68));
+      backdrop-filter: blur(calc(var(--glass-blur, 16px) + 6px)) saturate(180%);
+      -webkit-backdrop-filter: blur(calc(var(--glass-blur, 16px) + 6px)) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.14), inset 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+
+    .first-letter-token {
+      cursor: pointer;
+      display: inline-block;
+      padding: 2px 6px;
+      margin: 0 3px;
+      border-radius: 4px;
+      background-color: rgba(217, 119, 6, 0.12);
+      border: 1px solid rgba(217, 119, 6, 0.3);
+      color: #92400e;
+      transition: all 0.2s;
+    }
+    .first-letter-token:hover {
+      background-color: rgba(217, 119, 6, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .cloze-input {
+      display: inline-block;
+      text-align: center;
+      padding: 3px 8px;
+      margin: 0 4px;
+      border-radius: 6px;
+      border: 1px dashed #d97706;
+      background: #ffffff;
+      font-weight: 600;
+      color: #92400e;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .cloze-input:focus {
+      border-style: solid;
+      border-color: #b45309;
+      box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.25);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.04);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(168, 162, 158, 0.6);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(217, 119, 6, 0.7);
+    }
+  </style>
+</head>
+<body class="h-full text-stone-800 flex flex-col antialiased overflow-x-hidden">
+
+  <!-- Top Navigation Bar -->
+  <header class="glass-header sticky top-0 z-30 flex-shrink-0 w-full">
+    <div class="max-w-7xl mx-auto px-2.5 sm:px-6 md:px-8 py-2 flex items-center justify-between">
+      <div class="flex items-center space-x-2 sm:space-x-3 min-w-0">
+        <!-- Monochromatic Lotus Icon -->
+        <div class="p-1 sm:p-1.5 rounded-lg bg-white/60 border border-white/60 text-amber-900 shadow-sm backdrop-blur-sm flex-shrink-0">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4.5 0-9-4-9-10 4 0 7 2 9 6 2-4 5-6 9-6 0 6-4.5 10-9 10z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21V9c0-3 1.5-6 4-7-2 1-3.5 3-4 6-.5-3-2-5-4-6 2.5 1 4 4 4 7"/>
+          </svg>
+        </div>
+        <div class="min-w-0">
+          <h1 class="text-sm sm:text-base md:text-xl font-bold tracking-tight font-serif text-amber-950 drop-shadow-sm whitespace-nowrap">Pháp Cú Tinh Tấn</h1>
+          <p class="hidden md:block text-[11px] text-stone-700 whitespace-nowrap truncate">423 Bài Kệ Học Thuộc Lòng • Chùa Hoằng Pháp</p>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
+        <button id="btnOpenTipsModal" title="Xem 4 bí kíp học thuộc nhanh" class="p-2 sm:px-2.5 sm:py-1.5 rounded-lg bg-white/70 hover:bg-white/95 text-stone-800 border border-white/60 text-xs font-semibold flex items-center space-x-1.5 transition shadow-xs backdrop-blur-sm">
+          <svg class="w-4 h-4 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+          <span class="hidden sm:inline">Bí Kíp Nhớ Nhanh</span>
+        </button>
+        <button id="btnPlayBell" title="Thỉnh chuông thanh tịnh" class="p-2 rounded-full hover:bg-white/95 transition flex items-center space-x-1 text-sm bg-white/70 text-amber-900 border border-white/60 shadow-xs backdrop-blur-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+          </svg>
+          <span class="hidden sm:inline text-xs font-semibold">Thỉnh Chuông</span>
+        </button>
+        <button id="btnOpenBgModal" title="Đổi hình nền từ máy & chỉnh độ mờ kính" class="p-2 sm:px-2.5 sm:py-1.5 rounded-lg bg-white/70 hover:bg-white/95 text-stone-800 border border-white/60 text-xs font-semibold flex items-center space-x-1.5 transition shadow-xs backdrop-blur-sm">
+          <svg class="w-4 h-4 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <span class="hidden md:inline">Đổi Hình Nền</span>
+        </button>
+        <button id="btnStartMockExam" title="Thi Thử Thuộc Lòng" class="px-2.5 sm:px-3 py-1.5 bg-amber-700/90 hover:bg-amber-800 text-white rounded-lg text-xs md:text-sm font-semibold shadow-md transition flex items-center space-x-1 sm:space-x-1.5 backdrop-blur-sm">
+          <svg class="w-4 h-4 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" stroke-width="2"/>
+            <circle cx="12" cy="12" r="6" stroke-width="2"/>
+            <circle cx="12" cy="12" r="2" stroke-width="2"/>
+          </svg>
+          <span class="hidden sm:inline">Thi Thử</span>
+        </button>
+        <button id="btnToggleSidebar" title="Danh sách Phẩm" class="md:hidden p-2 rounded-lg hover:bg-white/90 text-stone-700 border border-white/50">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <div class="flex-1 flex w-full min-w-0 h-[calc(100vh-56px)] sm:h-[calc(100vh-62px)] justify-center overflow-hidden">
+    <div class="max-w-7xl w-full min-w-0 flex h-full overflow-hidden shadow-2xl">
+    
+    <!-- Sidebar: 26 Chapters & Stats -->
+    <aside id="sidebar" class="w-80 glass-sidebar flex-shrink-0 flex flex-col hidden md:flex transition-all">
+      
+      <!-- Progress Bar Card -->
+      <div class="p-4 border-b border-white/30 bg-white/30 backdrop-blur-sm">
+        <div class="flex justify-between items-center mb-1.5">
+          <span class="text-[11px] font-semibold text-stone-700 uppercase tracking-wider">Tiến Độ Thuộc Lòng</span>
+          <span id="progressPercent" class="text-xs font-mono font-bold text-amber-900">0%</span>
+        </div>
+        <div class="w-full bg-white/60 h-2 rounded-full overflow-hidden border border-white/60">
+          <div id="progressBarFill" class="bg-emerald-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 mt-3 text-center">
+          <div class="p-2 rounded-lg bg-emerald-50/80 border border-emerald-300/80 shadow-xs">
+            <div id="statMastered" class="text-base font-bold text-emerald-900 font-mono">0</div>
+            <div class="text-[10px] text-emerald-800 font-medium">Đã thuộc</div>
+          </div>
+          <div class="p-2 rounded-lg bg-amber-50/80 border border-amber-300/80 shadow-xs">
+            <div id="statLearning" class="text-base font-bold text-amber-900 font-mono">0</div>
+            <div class="text-[10px] text-amber-800 font-medium">Đang học</div>
+          </div>
+          <div class="p-2 rounded-lg bg-white/60 border border-white/70 shadow-xs">
+            <div id="statUnseen" class="text-base font-bold text-stone-700 font-mono">423</div>
+            <div class="text-[10px] text-stone-600 font-medium">Chưa học</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 30-Day Plan Selector -->
+      <div class="p-3 border-b border-white/30 bg-white/20 backdrop-blur-sm">
+        <label for="dayPlanSelect" class="flex items-center text-xs font-semibold text-amber-950 mb-1.5">
+          <svg class="w-3.5 h-3.5 text-amber-700 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          Lộ Trình 30 Ngày Tinh Tấn:
+        </label>
+        <select id="dayPlanSelect" class="w-full p-2 text-xs rounded-lg border border-white/60 bg-white/80 text-stone-800 font-medium focus:outline-none focus:ring-1 focus:ring-amber-500 shadow-xs">
+          <!-- Populated by JS -->
+        </select>
+      </div>
+
+      <!-- Chapter List Header -->
+      <div class="p-3 font-semibold text-xs text-stone-700 uppercase tracking-wider flex justify-between items-center border-b border-white/30 bg-white/10">
+        <span>26 Phẩm Pháp Cú</span>
+        <button onclick="resetFilters()" class="text-[11px] text-amber-850 hover:text-amber-950 font-bold transition">Tất cả</button>
+      </div>
+
+      <div id="chapterList" class="flex-1 overflow-y-auto px-2 py-1 space-y-1">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Backup / Tools Footer -->
+      <div class="p-3 border-t border-white/30 flex justify-between text-xs text-stone-700 bg-white/30 backdrop-blur-sm">
+        <button id="btnExportData" class="hover:text-amber-900 flex items-center space-x-1 transition font-medium">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+          </svg>
+          <span>Xuất dữ liệu</span>
+        </button>
+        <button id="btnImportData" class="hover:text-amber-900 flex items-center space-x-1 transition font-medium">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          <span>Nhập dữ liệu</span>
+        </button>
+        <button id="btnResetData" class="hover:text-rose-600 font-medium transition">Đặt lại</button>
+        <input type="file" id="importFileInput" class="hidden" accept=".json">
+      </div>
+
+      <!-- Credits & Copyright -->
+      <div class="px-3 py-2 border-t border-white/20 bg-white/20 text-[10px] text-stone-600 text-center leading-normal">
+        <div>Kinh Pháp Cú • Chùa Hoằng Pháp</div>
+        <div class="font-medium text-amber-950 mt-0.5">Ứng dụng phát triển bởi Hoaba-cloud • © 2026</div>
+      </div>
+    </aside>
+
+    <!-- Center Workspace -->
+    <main class="flex-1 min-w-0 flex flex-col overflow-y-auto glass-main w-full">
+
+      <!-- Filter & Search Toolbar -->
+      <div class="glass-toolbar p-2.5 sm:p-3.5 flex-shrink-0 flex flex-col sm:flex-row gap-2 items-center justify-between w-full min-w-0">
+        <div class="w-full sm:flex-1 sm:min-w-[180px] relative">
+          <input type="text" id="searchInput" placeholder="Tìm theo số câu (1 - 423) hoặc từ khóa..." class="w-full pl-9 pr-3 py-1.5 text-xs sm:text-sm rounded-lg border border-white/60 bg-white/80 text-stone-800 placeholder-stone-400 focus:outline-none focus:ring-1 focus:ring-amber-500 shadow-xs">
+          <svg class="w-4 h-4 text-stone-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+
+        <div class="w-full sm:w-auto flex items-center space-x-2 min-w-0">
+          <select id="filterChapterSelect" class="w-full sm:w-auto max-w-full px-3 py-1.5 text-xs rounded-lg border border-white/60 bg-white/80 text-stone-800 font-medium focus:outline-none focus:ring-1 focus:ring-amber-500 shadow-xs truncate">
+            <!-- Populated by JS -->
+          </select>
+        </div>
+      </div>
+
+      <!-- Quick Chips Bar (Verse Selector) -->
+      <div class="glass-chips-bar px-2 sm:px-4 py-1.5 sm:py-2 flex-shrink-0 overflow-x-auto select-none min-h-[44px] sm:min-h-[48px] flex items-center w-full min-w-0">
+        <div id="verseChipsContainer" class="flex items-center space-x-1.5 min-w-max h-8">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Main Study Card Area -->
+      <div class="flex-1 min-w-0 p-2 sm:p-4 md:p-6 overflow-y-auto flex flex-col items-center justify-start w-full">
+        <div class="w-full max-w-4xl glass-card rounded-2xl p-3.5 sm:p-5 md:p-7 shadow-xl border border-white/70 space-y-3.5 sm:space-y-4 my-auto min-w-0">
+        
+          <!-- Header Info of Active Verse -->
+          <div class="flex items-center justify-between border-b border-stone-200/80 pb-2.5 sm:pb-3 gap-2">
+            <div class="min-w-0">
+              <div id="currentChapterTitle" class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-800 truncate">I. PHẨM SONG YẾU</div>
+              <h2 id="currentVerseNumber" class="text-lg sm:text-xl md:text-2xl font-serif font-bold text-stone-900">Bài Kệ Số 1</h2>
+            </div>
+            <div class="flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0">
+              <!-- Font size adjusters -->
+              <div class="flex items-center bg-white/70 border border-stone-300 rounded-lg p-0.5 text-xs shadow-xs" title="Chỉnh cỡ chữ bài kệ">
+                <button id="btnFontDec" title="Thu nhỏ chữ" class="px-2 py-0.5 hover:bg-stone-200/70 rounded text-stone-700 font-bold text-[11px]">A-</button>
+                <button id="btnFontInc" title="Phóng to chữ" class="px-2 py-0.5 hover:bg-stone-200/70 rounded text-stone-700 font-bold text-[11px] border-l border-stone-200">A+</button>
+              </div>
+
+              <!-- Share button -->
+              <button id="btnShareVerse" title="Chia sẻ bài kệ này (Zalo, Facebook, Copy link)" class="px-2 sm:px-2.5 py-1 rounded-lg bg-white/70 hover:bg-white text-stone-700 border border-stone-300 text-xs font-semibold flex items-center space-x-1 transition shadow-xs">
+                <svg class="w-3.5 h-3.5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                </svg>
+                <span class="hidden sm:inline">Chia sẻ</span>
+              </button>
+
+              <span id="verseStatusBadge" class="px-2.5 sm:px-3 py-1 text-xs font-semibold rounded-full bg-stone-100 text-stone-600 border border-stone-300">Chưa học</span>
+            </div>
+          </div>
+
+          <!-- 4 Study Mode Tabs -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-1.5 p-1 bg-white/50 backdrop-blur-md border border-white/60 rounded-xl">
+            <button class="mode-tab-btn active-mode-tab py-2 px-1.5 sm:px-2 text-xs sm:text-sm font-semibold rounded-lg bg-amber-700 text-white shadow-sm transition flex items-center justify-center space-x-1" data-mode="full">
+              <svg class="w-3.5 h-3.5 text-current flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+              <span class="truncate">Toàn Văn</span>
+            </button>
+            <button class="mode-tab-btn py-2 px-1.5 sm:px-2 text-xs sm:text-sm font-semibold rounded-lg text-stone-800 hover:bg-white/80 transition flex items-center justify-center space-x-1" data-mode="first-letter">
+              <svg class="w-3.5 h-3.5 text-current flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 5v14m4-7h8m-4-4v8"/>
+              </svg>
+              <span class="truncate">Chữ Cái Đầu</span>
+            </button>
+            <button class="mode-tab-btn py-2 px-1.5 sm:px-2 text-xs sm:text-sm font-semibold rounded-lg text-stone-800 hover:bg-white/80 transition flex items-center justify-center space-x-1" data-mode="cloze">
+              <svg class="w-3.5 h-3.5 text-current flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+              </svg>
+              <span class="truncate">Điền Khuyết</span>
+            </button>
+            <button class="mode-tab-btn py-2 px-1.5 sm:px-2 text-xs sm:text-sm font-semibold rounded-lg text-stone-800 hover:bg-white/80 transition flex items-center justify-center space-x-1" data-mode="blind">
+              <svg class="w-3.5 h-3.5 text-current flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"/>
+              </svg>
+              <span class="truncate">Khảo Bài</span>
+            </button>
+          </div>
+
+          <!-- Interactive Verse Display Body -->
+          <div id="verseContentArea" class="py-6 px-4 rounded-xl bg-white/70 border border-amber-200/70 shadow-inner min-h-[190px] flex flex-col justify-center">
+            <!-- Rendered dynamically by JS -->
+          </div>
+
+          <!-- Mẹo Ghi Nhớ & Phân Tích Cấu Trúc -->
+          <div id="tipBoxContainer" class="p-3.5 rounded-xl bg-amber-50/80 border border-amber-200/80 transition-all">
+            <div class="flex items-center justify-between mb-1.5 cursor-pointer select-none" id="tipHeader">
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-900" id="tipPattern">Mẹo Ghi Nhớ Cốt Lõi</span>
+              </div>
+              <button id="btnToggleTip" class="text-[11px] font-semibold text-amber-800 hover:text-amber-950 flex items-center space-x-1">
+                <span id="tipToggleText">Thu gọn</span>
+                <span id="tipToggleArrow">▲</span>
+              </button>
+            </div>
+            <div id="tipBody" class="space-y-1.5 text-xs md:text-sm text-stone-700 pt-2 border-t border-stone-200/70">
+              <div class="flex items-start space-x-2">
+                <span class="font-bold text-amber-900 flex-shrink-0">Ẩn dụ:</span>
+                <span id="tipImage" class="leading-relaxed text-stone-800"></span>
+              </div>
+              <div class="flex items-start space-x-2">
+                <span class="font-bold text-amber-900 flex-shrink-0">Cấu trúc:</span>
+                <span id="tipFormula" class="leading-relaxed text-stone-800"></span>
+              </div>
+              <div class="flex items-start space-x-2">
+                <span class="font-bold text-amber-900 flex-shrink-0">Từ khóa dẫn:</span>
+                <span id="tipKey" class="text-amber-950 font-semibold leading-relaxed"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Audio Tools (Recording & Speech) -->
+          <div class="space-y-2">
+            <div class="flex flex-wrap items-center justify-center gap-3">
+              <button id="btnRecordVoice" class="px-4 py-2 text-xs font-semibold rounded-lg border border-stone-300/80 bg-white/80 text-stone-800 hover:bg-white transition shadow-xs flex items-center space-x-1.5">
+                <svg class="w-3.5 h-3.5 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                </svg>
+                <span>Thu âm giọng đọc</span>
+              </button>
+              <button id="btnSpeakText" class="px-4 py-2 text-xs font-semibold rounded-lg border border-stone-300/80 bg-white/80 text-stone-800 hover:bg-white transition shadow-xs flex items-center space-x-1.5">
+                <svg class="w-3.5 h-3.5 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+                </svg>
+                <span>Nghe đọc mẫu</span>
+              </button>
+            </div>
+            <div id="audioPlayerContainer" class="max-w-md mx-auto"></div>
+          </div>
+
+          <!-- Bottom Action Bar (Spaced Repetition & Rating) -->
+          <div class="border-t border-stone-200/80 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <!-- Prev / Next Controls -->
+            <div class="flex items-center space-x-2 w-full sm:w-auto justify-between sm:justify-start">
+              <button id="btnPrevVerse" class="px-3.5 py-2 rounded-lg border border-stone-300/80 bg-white/80 hover:bg-white text-xs font-semibold text-stone-800 disabled:opacity-30 disabled:cursor-not-allowed flex items-center space-x-1 shadow-xs">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                <span>Câu Trước</span>
+              </button>
+              <button id="btnNextVerse" class="px-3.5 py-2 rounded-lg border border-stone-300/80 bg-white/80 hover:bg-white text-xs font-semibold text-stone-800 disabled:opacity-30 disabled:cursor-not-allowed flex items-center space-x-1 shadow-xs">
+                <span>Câu Kế Tiếp</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+
+            <!-- Self Evaluation Buttons -->
+            <div class="flex items-center space-x-2 w-full sm:w-auto justify-center">
+              <button id="btnMarkUnseen" class="px-3 py-2 bg-white hover:bg-stone-100 text-stone-700 border border-stone-300 rounded-lg text-xs font-semibold transition shadow-xs" title="Đặt lại trạng thái">
+                Chưa thuộc
+              </button>
+              <button id="btnMarkLearning" class="px-4 py-2 bg-amber-100/90 hover:bg-amber-200 text-amber-950 border border-amber-300 rounded-lg text-xs font-semibold transition flex items-center space-x-1 shadow-xs" title="Ôn lại ngày mai">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>Tạm nhớ</span>
+              </button>
+              <button id="btnMarkMastered" class="px-5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg text-xs font-semibold shadow-md transition flex items-center space-x-1.5" title="Thuộc làu, thỉnh chuông">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span>Thuộc làu</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Subtle footer inside main card -->
+          <div class="pt-2 text-center text-[10px] text-stone-600/80 flex items-center justify-center space-x-2">
+            <span>Ứng dụng phát triển bởi Hoaba-cloud • © 2026</span>
+            <span>•</span>
+            <span>Phụng sự Phật pháp phi thương mại</span>
+          </div>
+
+        </div>
+      </div>
+    </main>
+    </div>
+  </div>
+
+  <!-- Mock Exam Modal -->
+  <div id="examModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white/95 rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-stone-200 text-stone-800">
+      <div class="flex justify-between items-center pb-3 border-b border-stone-200">
+        <h3 class="font-serif font-bold text-lg text-amber-900 flex items-center space-x-2">
+          <svg class="w-5 h-5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" stroke-width="2"/>
+            <circle cx="12" cy="12" r="6" stroke-width="2"/>
+            <circle cx="12" cy="12" r="2" stroke-width="2"/>
+          </svg>
+          <span>Phòng Thi Thử - Bốc Thăm Ngẫu Nhiên</span>
+        </h3>
+        <button id="btnCloseExamModal" class="text-stone-400 hover:text-stone-700 text-2xl font-bold leading-none">&times;</button>
+      </div>
+
+      <div id="examQuestionContent" class="py-4">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Tips & Strategy Modal -->
+  <div id="tipsModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white/95 rounded-2xl max-w-2xl w-full p-6 shadow-2xl border border-stone-200 text-stone-800 max-h-[85vh] flex flex-col">
+      <div class="flex justify-between items-center pb-3 border-b border-stone-200 flex-shrink-0">
+        <h3 class="font-serif font-bold text-lg text-amber-900 flex items-center space-x-2">
+          <svg class="w-5 h-5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+          <span>4 Bí Kíp Vàng Học Thuộc 423 Bài Kệ Kinh Pháp Cú</span>
+        </h3>
+        <button id="btnCloseTipsModal" class="text-stone-400 hover:text-stone-700 text-2xl font-bold leading-none">&times;</button>
+      </div>
+
+      <div class="py-4 space-y-4 overflow-y-auto text-xs md:text-sm text-stone-700 pr-1">
+        <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200 space-y-1.5">
+          <div class="font-bold text-amber-900 flex items-center space-x-2 text-sm">
+            <span class="w-5 h-5 rounded-full border border-amber-600 text-amber-800 flex items-center justify-center text-xs font-mono font-bold">1</span>
+            <span>Học Theo Cặp Đối Lập (Chunking & Contrast)</span>
+          </div>
+          <p class="leading-relaxed text-stone-700">Đức Phật thường thuyết Pháp Cú theo từng <strong>cặp đối xứng 2 câu</strong> (ví dụ: Kệ 1 & 2, Kệ 3 & 4, Kệ 7 & 8, Kệ 13 & 14...). Chỉ cần thuộc câu 1, câu 2 sẽ tự động bật ra bằng cách hoán đổi từ khóa (Ác ⇄ Lành, Sầu ⇄ Vui, Ô nhiễm ⇄ Thanh tịnh). Học 1 câu nhớ luôn cả cặp.</p>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200 space-y-1.5">
+          <div class="font-bold text-amber-900 flex items-center space-x-2 text-sm">
+            <span class="w-5 h-5 rounded-full border border-amber-600 text-amber-800 flex items-center justify-center text-xs font-mono font-bold">2</span>
+            <span>Phương Pháp Chữ Cái Đầu Dòng (First-Letter Prompt)</span>
+          </div>
+          <p class="leading-relaxed text-stone-700">Thay vì nhìn toàn văn thụ động, hãy chuyển sang tab <span class="font-semibold text-amber-800">Chữ Cái Đầu</span>. Nhìn vào các chữ viết tắt (ví dụ: <code class="bg-white border border-stone-300 px-1.5 py-0.5 rounded font-mono text-amber-900">Ý d đ c p</code>) và tự đọc to cả câu. Não bộ bị kích thích truy xuất chủ động sẽ nhớ lâu gấp 3 lần bình thường.</p>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200 space-y-1.5">
+          <div class="font-bold text-amber-900 flex items-center space-x-2 text-sm">
+            <span class="w-5 h-5 rounded-full border border-amber-600 text-amber-800 flex items-center justify-center text-xs font-mono font-bold">3</span>
+            <span>Gắn Chặt Với Ẩn Dụ Thị Giác (Visual Anchors)</span>
+          </div>
+          <p class="leading-relaxed text-stone-700">Mỗi bài kệ đều gắn với một hình ảnh cực kỳ sinh động: <em>bánh xe lăn theo chân bò, bóng không rời hình, mái nhà vụng lợp dột mưa, cái muỗng không nếm được vị canh, con ong hút mật, hạt nước trên lá sen...</em> Nhớ hình ảnh trong đầu trước, câu chữ sẽ tự khắc tuôn ra sau.</p>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200 space-y-1.5">
+          <div class="font-bold text-amber-900 flex items-center space-x-2 text-sm">
+            <span class="w-5 h-5 rounded-full border border-amber-600 text-amber-800 flex items-center justify-center text-xs font-mono font-bold">4</span>
+            <span>Quy Tắc Ôn Cuốn Chiếu (Spaced Repetition)</span>
+          </div>
+          <p class="leading-relaxed text-stone-700">Tuyệt đối không học dồn bài mới mà quên bài cũ. Mỗi ngày nạp 14 câu mới, nhưng phải dành <strong>70% thời gian ôn lại</strong> các câu đã học hôm qua và tuần trước. Nút <span class="font-semibold text-emerald-700">Thuộc Làu</span> và <span class="font-semibold text-amber-700">Tạm Nhớ</span> sẽ tự động điều phối chu kỳ này cho bạn.</p>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-stone-200 text-center flex-shrink-0">
+        <button id="btnUnderstandTips" class="px-6 py-2 bg-amber-700 hover:bg-amber-800 text-white rounded-lg font-semibold shadow-md transition">Đã Hiểu & Bắt Đầu Học</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background & Glass Settings Modal -->
+  <div id="bgModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white/95 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-stone-200 text-stone-800">
+      <div class="flex justify-between items-center pb-3 border-b border-stone-200">
+        <h3 class="font-serif font-bold text-base md:text-lg text-amber-900 flex items-center space-x-2">
+          <svg class="w-5 h-5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <span>Tùy Chỉnh Hình Nền & Kính Mờ</span>
+        </h3>
+        <button id="btnCloseBgModal" class="text-stone-400 hover:text-stone-700 text-2xl font-bold leading-none">&times;</button>
+      </div>
+
+      <div class="py-4 space-y-4 text-xs text-stone-700">
+        <!-- Upload custom file from PC -->
+        <div class="p-3.5 rounded-xl bg-amber-50/60 border border-amber-200 space-y-2 text-center">
+          <div class="text-stone-800 font-semibold text-sm">Chọn ảnh từ máy tính của bạn</div>
+          <p class="text-[11px] text-stone-600 leading-relaxed">Tải lên bất kỳ ảnh ngôi chùa, tượng Phật, hoa sen hay phong cảnh bạn muốn (.jpg, .png, .webp):</p>
+          <button id="btnTriggerBgUpload" class="mt-1 w-full py-2.5 px-4 bg-amber-700 hover:bg-amber-800 text-white rounded-lg font-semibold shadow-md transition flex items-center justify-center space-x-2">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+            </svg>
+            <span>Chọn Ảnh Từ Máy Tính</span>
+          </button>
+          <input type="file" id="bgFileInput" accept="image/*" class="hidden">
+        </div>
+
+        <!-- Glass opacity slider -->
+        <div class="p-3.5 rounded-xl bg-white border border-stone-200 space-y-2 shadow-xs">
+          <div class="flex justify-between items-center">
+            <span class="font-semibold text-stone-800">Độ trắng mờ của kính:</span>
+            <span id="glassOpacityVal" class="font-mono text-amber-800 font-bold">50%</span>
+          </div>
+          <input type="range" id="glassOpacitySlider" min="20" max="80" value="50" class="w-full accent-amber-600 cursor-pointer">
+          <div class="flex justify-between text-[10px] text-stone-500">
+            <span>Trong suốt (thấy rõ ảnh nền)</span>
+            <span>Trắng mờ đậm (tối giản)</span>
+          </div>
+        </div>
+
+        <!-- Buddhist presets -->
+        <div class="space-y-2">
+          <div class="font-semibold text-stone-700 text-xs">Hoặc chọn nhanh ảnh Phật Pháp & Thiền Môn sắc nét:</div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            <button class="preset-bg-btn p-2 rounded-lg border border-stone-300 bg-stone-50 hover:bg-amber-50 hover:border-amber-500 text-left transition shadow-xs flex flex-col justify-between" data-url="https://upload.wikimedia.org/wikipedia/commons/1/16/Tran_quoc_pagoda.jpg">
+              <div class="text-[11px] font-bold text-amber-950">Chùa Trấn Quốc</div>
+              <div class="text-[9px] text-stone-500">Hà Nội • Cổ tự linh thiêng</div>
+            </button>
+            <button class="preset-bg-btn p-2 rounded-lg border border-stone-300 bg-stone-50 hover:bg-amber-50 hover:border-amber-500 text-left transition shadow-xs flex flex-col justify-between" data-url="https://upload.wikimedia.org/wikipedia/commons/9/93/Chua_Bai_Dinh_X12.JPG">
+              <div class="text-[11px] font-bold text-amber-950">Chùa Bái Đính</div>
+              <div class="text-[9px] text-stone-500">Ninh Bình • Bảo tháp nguy nga</div>
+            </button>
+            <button class="preset-bg-btn p-2 rounded-lg border border-stone-300 bg-stone-50 hover:bg-amber-50 hover:border-amber-500 text-left transition shadow-xs flex flex-col justify-between" data-url="https://upload.wikimedia.org/wikipedia/commons/1/1d/Borobudur_Sunrise_2012-01-05.jpg">
+              <div class="text-[11px] font-bold text-amber-950">Bình Minh Borobudur</div>
+              <div class="text-[9px] text-stone-500">Bảo tháp Phật giáo thế giới</div>
+            </button>
+            <button class="preset-bg-btn p-2 rounded-lg border border-stone-300 bg-stone-50 hover:bg-amber-50 hover:border-amber-500 text-left transition shadow-xs flex flex-col justify-between" data-url="https://upload.wikimedia.org/wikipedia/commons/e/ea/Buddha_Mendut.jpg">
+              <div class="text-[11px] font-bold text-amber-950">Đức Phật Thích Ca</div>
+              <div class="text-[9px] text-stone-500">Tượng Phật thiền định an tịnh</div>
+            </button>
+            <button class="preset-bg-btn p-2 rounded-lg border border-stone-300 bg-stone-50 hover:bg-amber-50 hover:border-amber-500 text-left transition shadow-xs flex flex-col justify-between" data-url="https://upload.wikimedia.org/wikipedia/commons/b/b5/Daibutsu-den_in_Todaiji_Nara01bs3200.jpg">
+              <div class="text-[11px] font-bold text-amber-950">Đại Điện Đông Đại Tự</div>
+              <div class="text-[9px] text-stone-500">Thiền môn trang nghiêm cổ kính</div>
+            </button>
+            <button class="preset-bg-btn p-2 rounded-lg border border-stone-300 bg-stone-50 hover:bg-amber-50 hover:border-amber-500 text-left transition shadow-xs flex flex-col justify-between" data-url="https://upload.wikimedia.org/wikipedia/commons/8/80/Lotus_Nelumbo_nucifera_Flower_3264px.jpg">
+              <div class="text-[11px] font-bold text-amber-950">Hoa Sen Thanh Tịnh</div>
+              <div class="text-[9px] text-stone-500">Biểu tượng giác ngộ thoát trần</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mẹo tải ảnh nét từ Google -->
+        <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200/80 text-[11px] text-stone-700 leading-relaxed space-y-1">
+          <div class="font-bold text-amber-900 flex items-center space-x-1">
+            <span>Mẹo lấy ảnh nền sắc nét trên Google:</span>
+          </div>
+          <p>1. Tìm trên Google Images → Bấm nút <strong>Công cụ (Tools)</strong> → <strong>Kích thước (Size)</strong> → Chọn <strong>Lớn (Large)</strong>.</p>
+          <p>2. <strong>Bấm vào ảnh cho phóng to ra</strong> bên phải, chờ 1-2 giây cho ảnh nét rồi mới nhấp chuột phải chọn <strong>"Lưu hình ảnh thành..."</strong> (Không lưu trực tiếp từ trang danh sách kết quả vì đó chỉ là ảnh nhỏ thumbnail).</p>
+        </div>
+
+        <!-- Reset default button -->
+        <div class="pt-3 text-center border-t border-stone-200 flex justify-between items-center">
+          <button id="btnResetBg" class="text-xs text-rose-600 hover:text-rose-700 underline font-medium">Khôi phục nền gốc</button>
+          <button id="btnSaveBgModal" class="px-5 py-1.5 bg-stone-800 hover:bg-stone-900 text-white rounded-lg text-xs font-semibold">Đóng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Scripts -->
+  <script src="data.js?v=3.0"></script>
+  <script src="tips.js?v=3.0"></script>
+  <script src="app.js?v=3.0"></script>
+
+  <!-- Mobile Sidebar Toggle Script -->
+  <script>
+    const btnToggle = document.getElementById('btnToggleSidebar');
+    const sidebar = document.getElementById('sidebar');
+    if (btnToggle && sidebar) {
+      btnToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('hidden');
+        sidebar.classList.toggle('absolute');
+        sidebar.classList.toggle('z-40');
+        sidebar.classList.toggle('h-[calc(100%-60px)]');
+        sidebar.classList.toggle('shadow-2xl');
+      });
+    }
+  </script>
+</body>
+</html>
