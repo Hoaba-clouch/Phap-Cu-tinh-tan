@@ -1151,7 +1151,30 @@ function playTextToSpeech() {
   const text = currentVerse.lines.join('. ');
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = 'vi-VN';
-  utterance.rate = 0.85;
+
+  // Trên iPad/iPhone (iOS), tốc độ 0.95 giữ trọn ngữ điệu tự nhiên, tránh bị ngang phè
+  const isAppleDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  utterance.rate = isAppleDevice ? 0.95 : 0.85;
+
+  // Ưu tiên chọn giọng nam tiếng Việt (như NamMinh, Male) nếu máy có sẵn
+  if ('speechSynthesis' in window) {
+    const voices = window.speechSynthesis.getVoices();
+    const viVoices = voices.filter(v => v.lang.includes('vi') || v.lang.includes('VI'));
+    const maleVoice = viVoices.find(v => 
+      v.name.toLowerCase().includes('nam') || 
+      v.name.toLowerCase().includes('male') ||
+      v.name.toLowerCase().includes('voice 2')
+    );
+    if (maleVoice) {
+      utterance.voice = maleVoice;
+    } else {
+      const enhancedVoice = viVoices.find(v => 
+        v.name.includes('Enhanced') || v.name.includes('Premium') || v.name.includes('Natural')
+      );
+      if (enhancedVoice) utterance.voice = enhancedVoice;
+    }
+  }
 
   utterance.onstart = () => {
     isSpeaking = true;
