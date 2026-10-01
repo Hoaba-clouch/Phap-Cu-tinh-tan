@@ -1111,42 +1111,8 @@ function resetAudioRecording() {
   if (playerContainer) playerContainer.innerHTML = '';
 }
 
-// Warm, gentle Buddhist voice synthesizer setup
-let viVoices = [];
+// Text to Speech using SpeechSynthesis (Gốc ban đầu)
 let isSpeaking = false;
-
-function loadViVoices() {
-  if (!('speechSynthesis' in window)) return;
-  const allVoices = window.speechSynthesis.getVoices();
-  viVoices = allVoices.filter(v => v.lang.includes('vi') || v.lang.includes('VI'));
-}
-
-if ('speechSynthesis' in window) {
-  loadViVoices();
-  if (speechSynthesis.onvoiceschanged !== undefined) {
-    speechSynthesis.onvoiceschanged = loadViVoices;
-  }
-}
-
-function getWarmRecitationVoice() {
-  if (!viVoices || viVoices.length === 0) {
-    loadViVoices();
-  }
-  if (!viVoices || viVoices.length === 0) return null;
-
-  // 1. Natural / Neural voices on Windows Edge (HoaiMy / NamMinh)
-  const naturalVoice = viVoices.find(v => 
-    v.name.includes('Natural') || v.name.includes('Online') || v.name.includes('NamMinh') || v.name.includes('HoaiMy')
-  );
-  if (naturalVoice) return naturalVoice;
-
-  // 2. Google tiếng Việt on Chrome
-  const googleVoice = viVoices.find(v => v.name.toLowerCase().includes('google'));
-  if (googleVoice) return googleVoice;
-
-  // 3. Fallback to any Vietnamese voice
-  return viVoices[0] || null;
-}
 
 function resetSpeechSynthesis() {
   if ('speechSynthesis' in window && window.speechSynthesis.speaking) {
@@ -1175,7 +1141,6 @@ function playTextToSpeech() {
 
   const btn = document.getElementById('btnSpeakText');
 
-  // If already speaking, stop and reset
   if (isSpeaking) {
     resetSpeechSynthesis();
     return;
@@ -1183,22 +1148,10 @@ function playTextToSpeech() {
 
   window.speechSynthesis.cancel();
 
-  // Create gentle breath pauses between poetic lines with comma and space
-  const text = currentVerse.lines.join(', ... ');
+  const text = currentVerse.lines.join('. ');
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = 'vi-VN';
-
-  // Warm, deep, and gentle Buddhist recitation tuning
-  const warmVoice = getWarmRecitationVoice();
-  if (warmVoice) {
-    utterance.voice = warmVoice;
-  }
-  
-  // Pitch: 0.86 (warmer, deeper, more grounded - trầm ấm)
-  // Rate: 0.78 (slow, meditative tempo - nhẹ nhàng, an tịnh)
-  utterance.pitch = 0.86;
-  utterance.rate = 0.78;
-  utterance.volume = 1.0;
+  utterance.rate = 0.85;
 
   utterance.onstart = () => {
     isSpeaking = true;
